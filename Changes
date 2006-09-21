@@ -1,0 +1,5 @@
+Revision history for Perl extension Socket::Multicast6.
+
+0.01  Wed Sep 13 14:51:53 BST 2006
+	- original version based on Socket::Multicast version 0.01
+
