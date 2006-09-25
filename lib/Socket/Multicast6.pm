@@ -20,6 +20,8 @@ my @export_ipv4 = qw(
 		IP_MULTICAST_LOOP
 		IP_ADD_MEMBERSHIP
 		IP_DROP_MEMBERSHIP
+		IP_ADD_SOURCE_MEMBERSHIP
+		IP_DROP_SOURCE_MEMBERSHIP
 		pack_ip_mreq
 	);
 
@@ -32,11 +34,20 @@ my @export_ipv6 = qw(
 		pack_ipv6_mreq
 	);
 
+my @export_independent = qw(
+		MCAST_JOIN_GROUP
+		MCAST_BLOCK_SOURCE
+		MCAST_UNBLOCK_SOURCE
+		MCAST_LEAVE_GROUP
+		MCAST_JOIN_SOURCE_GROUP
+		MCAST_LEAVE_SOURCE_GROUP
+	);
 
 our %EXPORT_TAGS = (
 	'ipv4' => [ @export_ipv4 ],
 	'ipv6' => [ @export_ipv6 ],
-	'all' => [ @export_ipv4, @export_ipv6 ],
+	'independent' => [ @export_independent ],
+	'all' => [ @export_ipv4, @export_ipv6, @export_independent ],
 );
 
 
@@ -83,7 +94,7 @@ Socket::Multicast6 - Constructors and constants for IPv4 and IPv6 multicast sock
   
   my $ip_mreq = pack_ip_mreq( inet_aton( $mcast_addr ), inet_aton( $if_addr ) );
 
-  my $ip_mreq = pack_ipv6_mreq( inet_pton( AF_INET6, $mcast6_addr ), $if_index );
+  my $ipv6_mreq = pack_ipv6_mreq( inet_pton( AF_INET6, $mcast6_addr ), $if_index );
 
   setsockopt( $sock, $ip, IP_ADD_MEMBERSHIP, $ip_mreq )
     or die( "setsockopt IP_ADD_MEMBERSHIP failed: $!" );
@@ -108,13 +119,15 @@ at L<IO::Socket::Multicast6> or L<IO::Socket::Multicast>.
 
 =head1 EXPORTS
 
-By default nothing is exported, you can use the 'ipv4' and 'ipv6' to 
+By default nothing is exported, you can use the 'ipv4', 'ipv6' and 'independent' to 
 export a specific protocol family, or 'all' to export all symbols.
 
 
 =head1 FUNCTIONS
 
 =item $ip_mreq = pack_ip_mreq(MCAST_ADDR, IF_ADDR)
+
+=item $ip_mreq_source = pack_ip_mreq_source(MCAST_ADDR, SOURCE_ADDR, IF_ADDR)
 
 =item $ipv6_mreq = pack_ipv6_mreq(MCAST6_ADDR, IF_INDEX)
 
@@ -133,6 +146,10 @@ export a specific protocol family, or 'all' to export all symbols.
 
 =item IP_DROP_MEMBERSHIP
 
+=item IP_ADD_SOURCE_MEMBERSHIP
+
+=item IP_DROP_SOURCE_MEMBERSHIP
+
 =item IPV6_MULTICAST_IF
 
 =item IPV6_MULTICAST_HOPS
@@ -142,6 +159,18 @@ export a specific protocol family, or 'all' to export all symbols.
 =item IPV6_JOIN_GROUP
 
 =item IPV6_LEAVE_GROUP
+
+=item MCAST_JOIN_GROUP
+
+=item MCAST_BLOCK_SOURCE
+
+=item MCAST_UNBLOCK_SOURCE
+
+=item MCAST_LEAVE_GROUP
+
+=item MCAST_JOIN_SOURCE_GROUP
+
+=item MCAST_LEAVE_SOURCE_GROUP
 
 =back
 

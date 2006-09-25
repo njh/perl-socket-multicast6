@@ -23,6 +23,10 @@ my @socket_options = (
 );
 
 
+#
+# We don't currently check for SSM/Protocol-Independent Multicast
+#
+
 foreach my $opt ( @socket_options ) {
 	my $value = eval "$opt";
 	
