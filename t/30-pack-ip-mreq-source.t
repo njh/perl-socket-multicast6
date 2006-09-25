@@ -1,17 +1,19 @@
 use Test::More tests => 100;
 
 use Socket;
-use Socket::Multicast6 qw/:all/;
+use Socket::Multicast6 qw/:ipv4/;
 
 SKIP: {
-	skip("Source Specific Multicast isn't available", 100) unless (defined IP_ADD_SOURCE_MEMBERSHIP);
+	unless (defined eval("IP_ADD_SOURCE_MEMBERSHIP")) {
+		skip("Source Specific Multicast isn't available on this system.", 100);
+	}
 	
 	foreach (1..100) {
 		my $multiaddr = inet_aton( rand_ip() );
 		my $sourceaddr = inet_aton( rand_ip() );
 		my $interface = inet_aton( rand_ip() );
 	
-		my $pack_ip_mreq = Socket::Multicast6::pack_ip_mreq_source( $multiaddr, $sourceaddr, $interface );
+		my $pack_ip_mreq = pack_ip_mreq_source( $multiaddr, $sourceaddr, $interface );
 	
 		my $manual = $multiaddr . $interface . $sourceaddr;
 	
