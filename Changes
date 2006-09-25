@@ -1,5 +1,11 @@
 Revision history for Perl extension Socket::Multicast6.
 
+0.02  Mon Sep 25 16:52:17 BST 2006
+    - Now imports SSM/Protocol-Independent Multicast symbols
+    - Rewrote part of pack_ip_mreq()
+    - Added pack_ip_mreq_source() and test for it
+
+
 0.01  Wed Sep 13 14:51:53 BST 2006
 	- original version based on Socket::Multicast version 0.01
 

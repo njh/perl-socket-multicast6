@@ -5,7 +5,7 @@ use warnings;
 use vars qw(@ISA $VERSION);
 use Carp;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Socket::Multicast6', $VERSION);
@@ -23,6 +23,7 @@ my @export_ipv4 = qw(
 		IP_ADD_SOURCE_MEMBERSHIP
 		IP_DROP_SOURCE_MEMBERSHIP
 		pack_ip_mreq
+		pack_ip_mreq_source
 	);
 
 my @export_ipv6 = qw(
