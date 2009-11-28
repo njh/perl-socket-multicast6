@@ -1,7 +1,7 @@
 use Test::More tests => 14;
 
-use Socket qw/ AF_INET /;
-use Socket6 qw/ AF_INET6 IPPROTO_IP IPPROTO_IPV6 /;
+use Socket;
+use Socket6;
 use Socket::Multicast6 qw/ :all /;
 
 my @socket_options = (

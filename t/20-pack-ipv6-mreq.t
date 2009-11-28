@@ -1,5 +1,6 @@
 use Test::More tests => 5;
 
+use Socket;
 use Socket6;
 use Socket::Multicast6;
 

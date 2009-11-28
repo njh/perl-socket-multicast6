@@ -5,7 +5,7 @@ use warnings;
 use vars qw(@ISA $VERSION);
 use Carp;
 
-our $VERSION = '0.02';
+our $VERSION = '0.03';
 
 require XSLoader;
 XSLoader::load('Socket::Multicast6', $VERSION);
@@ -187,7 +187,8 @@ Socket::Multicast6 by Nicholas J Humfrey, E<lt>njh@cpan.orgE<gt>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (C) 2006 by Jonathan Steinert, Nicholas J Humfrey
+Copyright (C) 2006 Nicholas J Humfrey
+Copyright (C) 2006 Jonathan Steinert
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself, either Perl version 5.6.1 or,

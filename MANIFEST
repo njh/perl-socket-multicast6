@@ -1,8 +1,7 @@
+Build.PL
 Changes
 lib/Socket/Multicast6.pm
-Multicast6.xs
-ppport.h
-Makefile.PL
+lib/Socket/Multicast6.xs
 MANIFEST
 README
 t/00-Socket-Multicast.t
